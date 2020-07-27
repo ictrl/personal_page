@@ -373,11 +373,15 @@ img {
   color: var(--first-color);
 }
 .footer__social {
+  color: darkgray;
   font-size: 1.4rem;
   margin-right: var(--mb-1);
 }
 .footer__social:hover {
   color: var(--first-color);
+}
+.footer__text {
+  color: darkgray;
 }
 .footer__text:hover {
   color: var(--first-color);
