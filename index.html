@@ -1,319 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samrat Saurav Jaiswal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #0f0f0f, #070707);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-    <meta property="og:title" content="Samrat Saurav Jaiswal" />
-    <meta property="og:description" content="Fullstack Engineer" />
-    <meta
-      property="og:image"
-      content="https://avatars2.githubusercontent.com/u/39924445?s=400&amp;u=4a89f517b1b8991fdb407bc8affc402681c7b9c6&amp;v=4"
-    />
-    <meta property="og:url" content="https://samratjaiswal.com/index.html" />
+    .container {
+      text-align: center;
+      padding: 2rem;
+    }
 
-    <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #f0f0f0;
+    }
 
-    <!-- ===== BOX ICONS ===== -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    p {
+      font-size: 1.15rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
 
-    <title>Samrat Saurav Jaiswal</title>
-  </head>
-  <body>
-    <!--===== HEADER =====-->
-    <header class="l-header">
-      <nav class="nav bd-grid">
-        <div>
-          <a href="#" class="nav__logo">Samrat Saurav Jaiswal </a>
-        </div>
+    #typed-text {
+      font-size: 1.1rem;
+      color: #60a5fa;
+      height: 1.4rem;
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+    }
 
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="#home" class="nav__link active">Home</a>
-            </li>
-            <li class="nav__item">
-              <a href="#about" class="nav__link">About</a>
-            </li>
-            <li class="nav__item">
-              <a href="#skills" class="nav__link">Skills</a>
-            </li>
-            <!-- <li class="nav__item">
-              <a href="#portfolio" class="nav__link">Portfolio</a>
-            </li>
-            <li class="nav__item">
-              <a href="#contact" class="nav__link">Contact</a>
-            </li> -->
-          </ul>
-        </div>
+    .download-cv-link {
+      display: inline-block;
+      padding: 0.75rem 1.8rem;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 0 transparent;
+    }
 
-        <div class="nav__toggle" id="nav-toggle">
-          <i class="bx bx-menu"></i>
-        </div>
-      </nav>
-    </header>
+    .download-cv-link:hover {
+      background-color: #262626;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+    }
 
-    <main class="l-main">
-      <section class="home" id="home">
-        <div class="home__container bd-grid">
-          <h1 class="home__title"><span>HE</span><br />LLO.</h1>
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      #typed-text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hi, I'm Samrat</h1>
+    <p>Let's build fast, secure and scalable backend systems.</p>
+    <div id="typed-text">|</div>
+    <a class="download-cv-link" href="assets/Saurav-Backend-Engineer-6YOE.pdf" download>Download CV</a>
+  </div>
 
-          <div class="home__scroll">
-            <a href="#about" class="home__scroll-link"
-              ><i class="bx bx-up-arrow-alt"></i>Scroll down</a
-            >
-          </div>
+  <script>
+    const skills = [
+      "Node.js Developer",
+      "MongoDB Specialist",
+      "Kafka & Microservices",
+      "Docker & CI/CD",
+      "Clean Code Enthusiast"
+    ];
 
-          <img src="assets/img/dp.png" alt="" class="home__img" />
-        </div>
-      </section>
+    let i = 0;
+    let j = 0;
+    let isDeleting = false;
+    const typedText = document.getElementById("typed-text");
 
-      <section class="about section" id="about">
-        <h2 class="section-title">About</h2>
+    function type() {
+      const current = skills[i];
+      if (isDeleting) {
+        typedText.textContent = current.substring(0, j--) + '|';
+      } else {
+        typedText.textContent = current.substring(0, j++) + '|';
+      }
 
-        <div class="about__container bd-grid">
-          <div class="about__img">
-            <img src="assets/img/dp.png" alt="" />
-          </div>
+      if (!isDeleting && j === current.length + 1) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+      } else if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % skills.length;
+        setTimeout(type, 400);
+      } else {
+        setTimeout(type, isDeleting ? 40 : 100);
+      }
+    }
 
-          <div>
-            <h2 class="about__subtitle">I'am Samrat Saurav Jaiswal</h2>
-            <span class="about__profession"
-              >React Native / Nodejs Developer</span
-            >
-            <p class="about__text">
-              My superpower I'm an Engineer (Passion-Driven).
-              <br />
-              <br />
-              Who doesn't like doing magic? For me, Engineer is the way to
-              combine MAN and MACHINE.
-              <br />
-              <br />
-              Time value and Teamwork best define me. I follow agile methodology
-              and OKR.
-              <br />
-              <br />
-              Finding patterns and decoding personality is my daemon (program
-              runs as a background process, rather than being under the direct
-              control).
-            </p>
-
-            <div class="about__social">
-              <a
-                target="_blank"
-                href="https://www.linkedin.com/in/samrat-saurav-jaiswal-8a15ba138/"
-                class="about__social-icon"
-                ><i class="bx bxl-linkedin"></i
-              ></a>
-              <a
-                target="_blank"
-                href="https://github.com/ictrl"
-                class="about__social-icon"
-                ><i class="bx bxl-github"></i
-              ></a>
-              <a
-                target="_blank"
-                href="https://wa.me/+918340238900/?text=Hello Samrat, I'm"
-                class="about__social-icon"
-                ><i class="bx bxl-whatsapp"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="skills section" id="skills">
-        <h2 class="section-title">Skills</h2>
-
-        <div class="skills__container bd-grid">
-          <div class="skills__box">
-            <h3 class="skills__subtitle">Development</h3>
-            <span class="skills__name">React Native</span>
-            <span class="skills__name">Node Js</span>
-            <span class="skills__name">React</span>
-            <span class="skills__name">IOT</span>
-
-            <h3 class="skills__subtitle">Tools</h3>
-            <span class="skills__name">Kafka</span>
-            <span class="skills__name">Asana</span>
-            <span class="skills__name">BitBucket</span>
-            <span class="skills__name">Agile</span>
-            <span class="skills__name">OKR</span>
-            <span class="skills__name">Illustrator</span>
-          </div>
-
-          <div class="skills__img">
-            <img src="assets/img/skill.jpg" alt="" />
-          </div>
-        </div>
-      </section>
-
-      <!-- <section class="portfolio section" id="portfolio">
-        <h2 class="section-title">Portfolio</h2>
-
-        <div class="portfolio__container bd-grid">
-          <div class="portfolio__img">
-            <img src="assets/img/work1.jpg" alt="" />
-
-            <div class="portfolio__link">
-              <a href="#" class="portfolio__link-name">View details</a>
-            </div>
-          </div>
-          <div class="portfolio__img">
-            <img src="assets/img/work2.jpg" alt="" />
-
-            <div class="portfolio__link">
-              <a href="#" class="portfolio__link-name">View details</a>
-            </div>
-          </div>
-          <div class="portfolio__img">
-            <img src="assets/img/work3.jpg" alt="" />
-
-            <div class="portfolio__link">
-              <a href="#" class="portfolio__link-name">View details</a>
-            </div>
-          </div>
-          <div class="portfolio__img">
-            <img src="assets/img/work4.jpg" alt="" />
-
-            <div class="portfolio__link">
-              <a href="#" class="portfolio__link-name">View details</a>
-            </div>
-          </div>
-          <div class="portfolio__img">
-            <img src="assets/img/work5.jpg" alt="" />
-
-            <div class="portfolio__link">
-              <a href="#" class="portfolio__link-name">View details</a>
-            </div>
-          </div>
-          <div class="portfolio__img">
-            <img src="assets/img/work6.jpg" alt="" />
-
-            <div class="portfolio__link">
-              <a href="#" class="portfolio__link-name">View details</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="contact section" id="contact">
-        <h2 class="section-title">Contact</h2>
-
-        <div class="contact__container bd-grid">
-          <div class="contact__info">
-            <h3 class="contact__subtitle">EMAIL</h3>
-            <span class="contact__text">info.mail.com</span>
-
-            <h3 class="contact__subtitle">PHONE</h3>
-            <span class="contact__text">+20 999-999</span>
-
-            <h3 class="contact__subtitle">ADRESS</h3>
-            <span class="contact__text">My contry</span>
-          </div>
-
-          <form action="" class="contact__form">
-            <div class="contact__inputs">
-              <input type="text" placeholder="Name" class="contact__input" />
-              <input type="mail" placeholder="Email" class="contact__input" />
-            </div>
-
-            <textarea
-              name=""
-              id=""
-              cols="0"
-              rows="10"
-              class="contact__input"
-            ></textarea>
-
-            <input type="submit" value="Enviar" class="contact__button" />
-          </form>
-        </div>
-      </section> -->
-    </main>
-
-    <footer id="footer" class="footer section">
-      <div class="footer__container bd-grid">
-        <div class="footer__data">
-          <!-- <h2 class="footer__title">SAMRAT SAURAV JAISWAL</h2> -->
-          <p class="footer__text">
-            &nbsp;&nbsp;&nbsp; Currently hustlin' in India
-          </p>
-        </div>
-
-        <div class="footer__data">
-          <!-- <h2 class="footer__title">EXPLORE</h2> -->
-          <!-- <ul>
-            <li><a href="#home" class="footer__link">Home</a></li>
-            <li><a href="#about" class="footer__link">About</a></li>
-            <li><a href="#skills" class="footer__link">Skills</a></li>
-            <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
-            <li><a href="#Contact" class="footer__link">Contact</a></li>
-          </ul> -->
-          <a
-            href="mailto:hey@samratjaiswal.com"
-            target="_blank"
-            class="footer__text"
-          >
-            &nbsp;&nbsp;&nbsp; hey@samratjaiswal.com
-          </a>
-          <br />
-          &nbsp; &nbsp; &nbsp;&nbsp;
-          <a
-            href="https://wa.me/+918340238900/?text=Hello Samrat, I'm"
-            target="_blank"
-            class="footer__text"
-          >
-            &nbsp;&nbsp;&nbsp; +918340238900
-          </a>
-        </div>
-
-        <div class="footer__data">
-          &nbsp; &nbsp; &nbsp;
-          <!-- <h2 class="footer__title">FOLLOW</h2> -->
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/samrat-saurav-jaiswal-8a15ba138/"
-            class="footer__social"
-            ><i class="bx bxl-linkedin"></i
-          ></a>
-          <a
-            target="_blank"
-            href="https://github.com/ictrl"
-            class="footer__social"
-            ><i class="bx bxl-github"></i
-          ></a>
-          <a
-            target="_blank"
-            href="https://wa.me/+918340238900/?text=Hello Samrat, I'm"
-            class="footer__social"
-            ><i class="bx bxl-whatsapp"></i
-          ></a>
-          <a
-            href="https://www.facebook.com/samratsauravjaiswal"
-            class="footer__social"
-            ><i class="bx bxl-facebook"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/samrat.online/"
-            class="footer__social"
-            ><i class="bx bxl-instagram"></i
-          ></a>
-          <a href="https://twitter.com/samratsauravjai" class="footer__social"
-            ><i class="bx bxl-twitter"></i
-          ></a>
-        </div>
-      </div>
-    </footer>
-
-    <!--===== SCROLL REVEAL =====-->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <!--===== MAIN JS =====-->
-    <script src="assets/js/main.js"></script>
-  </body>
+    type();
+  </script>
+</body>
 </html>
